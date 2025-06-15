@@ -5,6 +5,12 @@ const server = http.createServer(app);
 const logger = require('morgan');
 const cors = require('cors');
 
+/*
+*IMPORTACION DE RUTAS
+*/
+
+const usersRoutes = require('./routes/userRoutes');
+
 
 
 const port = process.env.PORT || 3000;
@@ -20,7 +26,14 @@ app.disable('x-powered-by');
 
 app.set('port', port);
 
-server.listen(3000, '192.168.1.125' || 'localhost', function() {
+/*
+*LLAMADO DE RUTAS
+*/
+
+usersRoutes(app);
+
+//Cambia la IP cada que se reinicia la lap etc
+server.listen(3000, '192.168.1.79' || 'localhost', function() {
     console.log('Aplicación de NodeJS ' + port + ' Iniciada...')
 });
 
